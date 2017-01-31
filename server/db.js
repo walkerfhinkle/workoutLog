@@ -1,4 +1,4 @@
-var bodyParser = require('body-parser');
+
 var Sequelize = require('sequelize');
 
 var sequelize = new Sequelize('workoutlog', 'postgres', 'postpass08!!', {
