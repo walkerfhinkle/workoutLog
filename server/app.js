@@ -1,33 +1,13 @@
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
-var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('workoutlog', 'postgres', 'postpass08!!', {
-	host: 'localhost',
-	dialect: 'postgres'
-});
-
-sequelize.authenticate().then(
-	function() {
-		console.log('connected to workoutlog postgres db');
-	},
-	function(err){
-		console.log(err);
-	}
-);
-
-// build a user model in sequelize
-var User = sequelize.define('user', {
-	username: Sequelize.STRING,
-	passwordhash: Sequelize.STRING,
-});
+var sequelize = require('./db.js');
+var User = sequelize.import('./models/user');
 
 //creates the table in postgres
 User.sync();
-
 //**THIS WILL CLEAR USER TABLE**//
-//User({ force: true });
+//	User({ force: true });
 
 app.use(bodyParser.json());
 app.use(require('./middleware/header'));
