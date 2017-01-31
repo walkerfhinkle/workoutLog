@@ -17,17 +17,20 @@ sequelize.authenticate().then(
 	}
 );
 
-// build a user model in sqllize
+// build a user model in sequelize
 var User = sequelize.define('user', {
 	username: Sequelize.STRING,
 	passwordhash: Sequelize.STRING,
 });
 
 //creates the table in postgres
-User.sync(); 
-// User({ force: true });
+User.sync();
+
+//**THIS WILL CLEAR USER TABLE**//
+//User({ force: true });
 
 app.use(bodyParser.json());
+app.use(require('./middleware/header'));
 
 app.post('/api/user', function(req, res){
 	//when we post to api user, it will want a user object in the body
@@ -54,7 +57,6 @@ app.post('/api/user', function(req, res){
 	);
 });
 
-app.use(require('./middleware/header'));
 
 app.use('/api/test', function(req, res){
 	res.send("Hello World");
