@@ -1,4 +1,6 @@
 
+require('dotenv').config();
+
 var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
@@ -12,7 +14,10 @@ User.sync();
 //	User({ force: true });
 
 app.use(bodyParser.json());
+
 app.use(require('./middleware/header'));
+app.use(require('./middleware/validate-session'));
+
 app.use('/api/user', require('./routes/user'));
 //login route
 app.use('/api/login', require('./routes/session'));
