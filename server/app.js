@@ -14,10 +14,12 @@ User.sync();
 app.use(bodyParser.json());
 app.use(require('./middleware/header'));
 app.use('/api/user', require('./routes/user'));
+//login route
+app.use('/api/login', require('./routes/session'));
 app.use('/api/test', function(req, res){
 	res.send("Hello World");
 });
 
 app.listen(3000, function(){
 	console.log("app is listening on port 3000");
-});
+});		
