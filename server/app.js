@@ -1,11 +1,10 @@
 
 require('dotenv').config();
 
-var bodyParser = require('body-parser');
+var sequelize = require('./db.js');
 var express = require('express');
 var app = express();
-
-var sequelize = require('./db.js');
+var bodyParser = require('body-parser');
 var User = sequelize.import('./models/user');
 
 //creates the table in postgres
