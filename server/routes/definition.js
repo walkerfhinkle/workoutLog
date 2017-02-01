@@ -10,6 +10,7 @@ router.post('/', function(req, res) {
 	var logType = req.body.definition.type;
 	var owner = req.user.id;
 
+
 	//methods
 
 
@@ -45,7 +46,7 @@ router.get('/', function(req, res) {
 	Definition
 	//findAll by owner method
 	.findAll({
-		where: {owner: userid}
+		where: { owner: userid }
 	})
 
 	.then(

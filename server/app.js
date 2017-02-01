@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var User = sequelize.import('./models/user');
 
 //creates the table in postgres
-User.sync();
+sequelize.sync();
 //**THIS WILL CLEAR USER TABLE**//
 //	User({ force: true });
 
