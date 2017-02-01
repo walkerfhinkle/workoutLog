@@ -1,3 +1,4 @@
+
 $(function(){
 	$.extend(WorkoutLog, {
 		//signup method
