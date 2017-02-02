@@ -38,6 +38,12 @@ $(function(){
 				$("#signup-modal").modal("hide");
 				$(".disabled").removeClass("disabled");
 				$("#loginout").text("Logout");
+				//go to define tab
+
+				$("#su_username").val("");
+				$("#su_password").val("");
+
+				$(".nav-tabs a[href='#define']").tab("show");
 					
 					}).fail(function() {
 				$("#su_error").text("There was an issue with sign up").show();
@@ -69,15 +75,18 @@ $(function(){
 			login.done(function(data) {
 				if (data.sessionToken) {
 					WorkoutLog.setAuthHeader(data.sessionToken);
+					WorkoutLog.definition.fetchAll();
+					WorkoutLog.log.fetchAll();
 				}
 					$("#login-modal").modal("hide");
 					$(".disabled").removeClass("disabled");
 					$("#loginout").text("Logout");
-				if (data.sessionToken) {
-					WorkoutLog.setAuthHeader(data.sessionToken);
-					WorkoutLog.definition.fetchAll();
-					WorkoutLog.log.fetchAll();
-				}
+
+					$("#su_username").val("");
+					$("#su_password").val("");
+
+					$("a[href='#define']").tab("show");
+				
 			}).fail(function() {
 				$("#li_error").text("There was an issue with sign up").show();
 			});
