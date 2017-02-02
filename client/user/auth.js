@@ -29,6 +29,11 @@ $(function(){
 					console.log("Thanks for being my friend and signing up successfully.")
 					console.log(data.sessionToken);
 				}
+				if(data.sessionToken) {
+					WorkoutLog.setAuthHeader(data.sessionToken);
+					WorkoutLog.definition.fetchAll();
+					WorkoutLog.log.fetchAll();
+				}
 
 				$("#signup-modal").modal("hide");
 				$(".disabled").removeClass("disabled");
@@ -68,6 +73,11 @@ $(function(){
 					$("#login-modal").modal("hide");
 					$(".disabled").removeClass("disabled");
 					$("#loginout").text("Logout");
+				if (data.sessionToken) {
+					WorkoutLog.setAuthHeader(data.sessionToken);
+					WorkoutLog.definition.fetchAll();
+					WorkoutLog.log.fetchAll();
+				}
 			}).fail(function() {
 				$("#li_error").text("There was an issue with sign up").show();
 			});
